@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-
-    <head>
-        
-        <meta charset="utf-8">
+	<html <?php language_attributes(); ?> class="no-js no-svg">
+    <head>        
+        <meta charset="<?php bloginfo("charset"); ?>">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Andia - Responsive Agency Template</title>
+        <title><?php bloginfo('title'); ?> - <?php bloginfo('description');?></title>
 
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400">
@@ -52,7 +50,16 @@
 					<a class="navbar-brand" href="index.html">Andia - a super cool design agency...</a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="top-navbar-1">
+				<?php
+					wp_nav_menu(array(
+						'theme_location' => 'mainmenu',
+						'container' => 'div',
+						'container_class' => 'collapse navbar-collapse',
+						'container_id' => 'top-navbar-1',
+						'menu_class' => 'nav navbar-nav navbar-right',
+					));
+				?>
+				<!--<div class="collapse navbar-collapse" id="top-navbar-1">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown active">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
@@ -79,7 +86,7 @@
 							<a href="contact.php"><i class="fa fa-envelope"></i><br>Contact</a>
 						</li>
 					</ul>
-				</div>
+				</div>-->
 			</div>
 		</nav>
 		

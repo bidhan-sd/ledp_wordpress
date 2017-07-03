@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-
+<?php //echo realpath(dirname(__FILE__)); ?>
     <!-- Slider -->
     <div class="slider-container">
         <div class="container">

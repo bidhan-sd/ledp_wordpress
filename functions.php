@@ -7,7 +7,7 @@ function andia_setup() {
 
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
-		'mainmenu' => __( 'Primary Menu',      'andia' ),
+		'mainmenu'    => __( 'Primary Menu',      'andia' ),
 		'footermenu'  => __( 'Social Links Menu', 'andia' ),
 	) );
 
