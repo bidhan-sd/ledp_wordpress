@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/form-elements.css">
         <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/style.css">
         <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/media-queries.css">
+        <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,19 +48,20 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html">Andia - a super cool design agency...</a>
+					<a class="navbar-brand" href="<?php echo site_url(); ?>">Andia - a super cool design agency...</a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<?php
 					wp_nav_menu(array(
-						'theme_location' => 'mainmenu',
-						'container' => 'div',
+						'theme_location'  => 'mainmenu',
+						'container'       => 'div',
 						'container_class' => 'collapse navbar-collapse',
-						'container_id' => 'top-navbar-1',
-						'menu_class' => 'nav navbar-nav navbar-right',
+						'container_id'    => 'top-navbar-1',
+						'menu_class'      => 'nav navbar-nav navbar-right',
 					));
 				?>
-				<!--<div class="collapse navbar-collapse" id="top-navbar-1">
+<!--
+				<div class="collapse navbar-collapse" id="top-navbar-1">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown active">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
@@ -86,7 +88,8 @@
 							<a href="contact.php"><i class="fa fa-envelope"></i><br>Contact</a>
 						</li>
 					</ul>
-				</div>-->
+				</div>
+-->
 			</div>
 		</nav>
 		

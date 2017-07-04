@@ -10,3 +10,9 @@
 	Tags: black, brown, orange, tan, white, yellow, light, one-column, two-columns, right-sidebar, flexible-width, custom-header, custom-menu, editor-style, featured-images, microformats, post-formats, rtl-language-support, sticky-post, translation-ready
 	Text Domain: Andia  
 */
+ul.navbar-nav li.current_page_item  a {
+    background: #f8f8f8;
+    border-color: #9d426b;
+    color: #5d5d5d;
+}
+.fa fa-home{}
