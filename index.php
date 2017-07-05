@@ -7,36 +7,34 @@
                 <div class="col-sm-10 col-sm-offset-1 slider">
                     <div class="flexslider">
                         <ul class="slides">
-                            <li data-thumb="<?php echo get_template_directory_uri(); ?>/assets/img/slider/1.jpg">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/slider/1.jpg">
-                                <div class="flex-caption">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. 
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. 
-                                    Lorem ipsum dolor sit amet, consectetur.
-                                </div>php
-                            </li>
-                            <li data-thumb="<?php echo get_template_directory_uri(); ?>/assets/img/slider/2.jpg">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/slider/2.jpg">
-                                <div class="flex-caption">
-                                    Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit 
-                                    lobortis nisl ut aliquip ex ea commodo consequat.
-                                </div>
-                            </li>
-                            <li data-thumb="<?php echo get_template_directory_uri(); ?>/assets/img/slider/3.jpg">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/slider/3.jpg">
-                                <div class="flex-caption">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. 
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. 
-                                    Lorem ipsum dolor sit amet, consectetur.
-                                </div>
-                            </li>
-                            <li data-thumb="<?php echo get_template_directory_uri(); ?>/assets/img/slider/4.jpg">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/slider/4.jpg">
-                                <div class="flex-caption">
-                                    Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit 
-                                    lobortis nisl ut aliquip ex ea commodo consequat.
-                                </div>
-                            </li>
+                         <?php
+                            $offic_slider = null;
+                            $offic_slider = new WP_Query(array(
+                                'post_type' => 'slider',
+                                'posts_per_page' => -1,//-1 means unlimited item
+                            ));            
+                            if($offic_slider->have_posts()){
+                                $i = 0;
+                                while($offic_slider->have_posts()){
+                                    $i++;
+                                    $offic_slider->the_post();
+                                    $slider_caption = get_post_meta(get_the_ID(),'_officemaster_slider_caption',true);
+                                    ?>
+                                    <li data-thumb="<?php echo get_template_directory_uri(); ?>/assets/img/slider/1.jpg">
+                                        <?php the_post_thumbnail('slide-img'); ?>
+                                        <div class="flex-caption">
+                                            <?php the_content(); ?>
+                                        </div>
+                                    </li>                    
+                                    <?php
+                                }
+                            }else{
+                                echo "No Post";   
+                            }
+                            wp_reset_postdata();//Must use for end wp_query process.
+                        ?> 
+
+
                         </ul>
                     </div>
                 </div>
