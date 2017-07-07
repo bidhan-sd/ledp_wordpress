@@ -9,7 +9,7 @@ jQuery(document).ready(function() {
 	/*
 	    Slider
 	*/
-	$('.flexslider').flexslider({
+	jQuery('.flexslider').flexslider({
         animation: "slide",
         controlNav: "thumbnails",
         prevText: "",
@@ -19,7 +19,7 @@ jQuery(document).ready(function() {
 	/*
 	    Slider 2
 	*/
-	$('.slider-2-container').backstretch([
+	jQuery('.slider-2-container').backstretch([
 	  "assets/img/slider/5.jpg"
 	, "assets/img/slider/6.jpg"
 	, "assets/img/slider/7.jpg"
@@ -28,7 +28,7 @@ jQuery(document).ready(function() {
 	/*
 	    Image popup (home latest work)
 	*/
-	$('.view-work').magnificPopup({
+	jQuery('.view-work').magnificPopup({
 		type: 'image',
 		gallery: {
 			enabled: true,
@@ -51,7 +51,7 @@ jQuery(document).ready(function() {
 	/*
 	    Flickr feed
 	*/
-	$('.flickr-feed').jflickrfeed({
+	jQuery('.flickr-feed').jflickrfeed({
         limit: 8,
         qstrings: {
             id: '52617155@N08'
@@ -63,7 +63,7 @@ jQuery(document).ready(function() {
 	    Google maps
 	*/
 	var position = new google.maps.LatLng(45.067883, 7.687231);
-    $('.map').gmap({'center': position,'zoom': 15, 'disableDefaultUI':true, 'callback': function() {
+    jQuery('.map').gmap({'center': position,'zoom': 15, 'disableDefaultUI':true, 'callback': function() {
             var self = this;
             self.addMarker({'position': this.get('map').getCenter() });	
         }
@@ -72,33 +72,33 @@ jQuery(document).ready(function() {
     /*
 	    Subscription form
 	*/
-	$('.success-message').hide();
-	$('.error-message').hide();
+	jQuery('.success-message').hide();
+	jQuery('.error-message').hide();
 	
-	$('.footer-box-text-subscribe form').submit(function(e) {
+	jQuery('.footer-box-text-subscribe form').submit(function(e) {
 		e.preventDefault();
 		
-		var form = $(this);
+		var form = jQuery(this);
 	    var postdata = form.serialize();
 	    
-	    $.ajax({
+	    jQuery.ajax({
 	        type: 'POST',
 	        url: 'assets/subscribe.php',
 	        data: postdata,
 	        dataType: 'json',
 	        success: function(json) {
 	            if(json.valid == 0) {
-	                $('.success-message').hide();
-	                $('.error-message').hide();
-	                $('.error-message').html(json.message);
-	                $('.error-message').fadeIn();
+	                jQuery('.success-message').hide();
+	                jQuery('.error-message').hide();
+	                jQuery('.error-message').html(json.message);
+	                jQuery('.error-message').fadeIn();
 	            }
 	            else {
-	                $('.error-message').hide();
-	                $('.success-message').hide();
+	                jQuery('.error-message').hide();
+	                jQuery('.success-message').hide();
 	                form.hide();
-	                $('.success-message').html(json.message);
-	                $('.success-message').fadeIn();
+	                jQuery('.success-message').html(json.message);
+	                jQuery('.success-message').fadeIn();
 	            }
 	        }
 	    });
@@ -107,10 +107,10 @@ jQuery(document).ready(function() {
     /*
 	    Contact form
 	*/
-    $('.contact-form form').submit(function(e) {
+    jQuery('.contact-form form').submit(function(e) {
     	e.preventDefault();
 
-    	var form = $(this);
+    	var form = jQuery(this);
     	var nameLabel = form.find('label[for="contact-name"]');
     	var emailLabel = form.find('label[for="contact-email"]');
     	var messageLabel = form.find('label[for="contact-message"]');
@@ -121,7 +121,7 @@ jQuery(document).ready(function() {
         
         var postdata = form.serialize();
         
-        $.ajax({
+        jQuery.ajax({
             type: 'POST',
             url: 'assets/sendmail.php',
             data: postdata,
@@ -153,37 +153,37 @@ jQuery(window).load(function() {
 	/*
 	    Portfolio
 	*/
-	$('.portfolio-masonry').masonry({
+	jQuery('.portfolio-masonry').masonry({
 		columnWidth: '.portfolio-box', 
 		itemSelector: '.portfolio-box',
 		transitionDuration: '0.5s'
 	});
 	
-	$('.portfolio-filters a').on('click', function(e){
+	jQuery('.portfolio-filters a').on('click', function(e){
 		e.preventDefault();
-		if(!$(this).hasClass('active')) {
-	    	$('.portfolio-filters a').removeClass('active');
-	    	var clicked_filter = $(this).attr('class').replace('filter-', '');
-	    	$(this).addClass('active');
+		if(!jQuery(this).hasClass('active')) {
+	    	jQuery('.portfolio-filters a').removeClass('active');
+	    	var clicked_filter = jQuery(this).attr('class').replace('filter-', '');
+	    	jQuery(this).addClass('active');
 	    	if(clicked_filter != 'all') {
-	    		$('.portfolio-box:not(.' + clicked_filter + ')').css('display', 'none');
-	    		$('.portfolio-box:not(.' + clicked_filter + ')').removeClass('portfolio-box');
-	    		$('.' + clicked_filter).addClass('portfolio-box');
-	    		$('.' + clicked_filter).css('display', 'block');
-	    		$('.portfolio-masonry').masonry();
+	    		jQuery('.portfolio-box:not(.' + clicked_filter + ')').css('display', 'none');
+	    		jQuery('.portfolio-box:not(.' + clicked_filter + ')').removeClass('portfolio-box');
+	    		jQuery('.' + clicked_filter).addClass('portfolio-box');
+	    		jQuery('.' + clicked_filter).css('display', 'block');
+	    		jQuery('.portfolio-masonry').masonry();
 	    	}
 	    	else {
-	    		$('.portfolio-masonry > div').addClass('portfolio-box');
-	    		$('.portfolio-masonry > div').css('display', 'block');
-	    		$('.portfolio-masonry').masonry();
+	    		jQuery('.portfolio-masonry > div').addClass('portfolio-box');
+	    		jQuery('.portfolio-masonry > div').css('display', 'block');
+	    		jQuery('.portfolio-masonry').masonry();
 	    	}
 		}
 	});
 	
-	$(window).on('resize', function(){ $('.portfolio-masonry').masonry(); });
+	jQuery(window).on('resize', function(){ jQuery('.portfolio-masonry').masonry(); });
 	
 	// image popup	
-	$('.portfolio-box img').magnificPopup({
+	jQuery('.portfolio-box img').magnificPopup({
 		type: 'image',
 		gallery: {
 			enabled: true,
