@@ -58,38 +58,36 @@
     <div class="services-container">
         <div class="container">
             <div class="row">
-                <div class="col-sm-3">
-                    <div class="service wow fadeInUp">
-                        <div class="service-icon"><i class="fa fa-eye"></i></div>
-                        <h3>Beautiful Websites</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et...</p>
-                        <a class="big-link-1" href="services.html">Read more</a>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="service wow fadeInDown">
-                        <div class="service-icon"><i class="fa fa-table"></i></div>
-                        <h3>Responsive Layout</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et...</p>
-                        <a class="big-link-1" href="services.html">Read more</a>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="service wow fadeInUp">
-                        <div class="service-icon"><i class="fa fa-magic"></i></div>
-                        <h3>Awesome Logos</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et...</p>
-                        <a class="big-link-1" href="services.html">Read more</a>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="service wow fadeInDown">
-                        <div class="service-icon"><i class="fa fa-print"></i></div>
-                        <h3>High Res Prints</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et...</p>
-                        <a class="big-link-1" href="services.html">Read more</a>
-                    </div>
-                </div>
+	            <?php
+                    $the_query = new WP_Query(array(
+                        'post_type' => 'services',
+                        'posts_per_page' => 4,                        
+                    ));  
+                    if($the_query->have_posts()){
+                        while($the_query->have_posts()){
+                            $the_query->the_post();
+                        ?>
+                      <div class="col-sm-3">
+		                <div class="service wow fadeInDown">
+		                    <div class="service-icon"><i class="fa fa-<?php
+                                    $service_fields = get_post_meta( get_the_ID(), 'service_icons', true );
+                                    if($service_fields){
+                                        echo $service_fields;
+                                    }else{
+                                        echo 'home';
+                                    }
+                                ?>
+		                    "></i></div>
+		                    <h3><?php the_title(); ?></h3>
+		                    <?php the_content(); ?>
+		                    <a class="big-link-1" href="<?php the_permalink(); ?>">Read more</a>
+		                </div>
+	                </div>
+                        <?php
+                    } } else{
+                        echo "Sorry! No post here";
+                    }
+                ?> 
             </div>
         </div>
     </div>

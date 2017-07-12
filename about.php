@@ -62,59 +62,40 @@
                     <h2>Meet Our Team</h2>
                 </div>
             </div>
-            <div class="row">	            	
-                <div class="col-sm-3">
-                    <div class="team-box wow fadeInUp">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/team/1.jpg" alt="" data-at2x="assets/img/team/1.jpg">
-                        <h3>John Doe</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor...</p>
-                        <div class="team-social">		                        
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                            <a href="#"><i class="fa fa-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="team-box wow fadeInDown">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/team/2.jpg" alt="" data-at2x="assets/img/team/2.jpg">
-                        <h3>Jane Doe</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor...</p>
-                        <div class="team-social">		                        
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                            <a href="#"><i class="fa fa-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="team-box wow fadeInUp">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/team/3.jpg" alt="" data-at2x="assets/img/team/3.jpg">
-                        <h3>Tim Brown</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor...</p>
-                        <div class="team-social">		                        
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                            <a href="#"><i class="fa fa-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="team-box wow fadeInDown">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/team/4.jpg" alt="" data-at2x="assets/img/team/4.jpg">
-                        <h3>Sarah Red</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor...</p>
-                        <div class="team-social">		                        
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                            <a href="#"><i class="fa fa-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
+            <div class="row">	
+                    <?php
+                    $the_query = new WP_Query(array(
+                        'post_type' => 'adnia_team',
+                        'posts_per_page' => 4,                        
+                    ));  
+                    if($the_query->have_posts()){
+                        while($the_query->have_posts()){
+                            $the_query->the_post();
+                        ?>
+                            <div class="col-sm-3">
+                                <div class="team-box wow fadeInUp">
+                                    <?php if(has_post_thumbnail()){ ?>
+                                    
+                                      <img src="<?php $team_img = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID(), 'portfolio-images',false)); echo $team_img[0]; ?>" alt="" data-at2x="<?php echo $team_img[0]; ?>">
+                                    
+                                    <?php } ?>
+                                    <h3><?php the_title(); ?></h3>
+                                    <?php the_content(); ?>
+                                    <div class="team-social">		                        
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                                        <a href="#"><i class="fa fa-envelope"></i></a>
+                                    </div>
+                                </div>
+                            </div>                           
+                            
+                        <?php }
+                    }else{
+                        echo 'Sorry! there have no post.';
+                    }
+                ?>
+                
             </div>
         </div>
     </div>

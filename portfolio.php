@@ -23,22 +23,46 @@
 	            <div class="row">
 	            	<div class="col-sm-12 portfolio-filters wow fadeInLeft">
 	            		<a href="#" class="filter-all active">All</a> / 
-	            		<a href="#" class="filter-web-design">Web Design</a> / 
-	            		<a href="#" class="filter-logo-design">Logo Design</a> / 
-	            		<a href="#" class="filter-print-design">Print Design</a>
+	            		<?php 
+                                
+                                $port_tax = get_categories('taxonomy=portflio_cats&post_type=andia_portfolios');
+                                foreach($port_tax as $value){?>
+                                   <a href="#" class="filter-<?php echo $value->slug;?>"><?php echo $value->name; ?></a>/ 
+                               <?php } ?>
 	            	</div>
 	            </div>
 	            <div class="row">
 	            	<div class="col-sm-12 portfolio-masonry">
-		                <div class="portfolio-box web-design">
+                    <?php
+                    $the_query = new WP_Query(array(
+                        'post_type' => 'portfolio',
+                        'posts_per_page' => -1,                        
+                    ));  
+                    if($the_query->have_posts()){
+                        while($the_query->have_posts()){
+                            $the_query->the_post();
+                        ?>
+                         <div class="portfolio-box <?php $pterms = wp_get_post_terms(get_the_ID(),'portflio_cats', array( 'fields' => 'all'));
+foreach($pterms as $terms){
+    echo $terms->slug.' ';
+} ?>?>">
 		                	<div class="portfolio-box-container">
-			                	<img src="<?php echo get_template_directory_uri(); ?>/assets/img/portfolio/work1.jpg" alt="" data-at2x="<?php echo get_template_directory_uri(); ?>/assets/img/portfolio/work1.jpg">
-			                	<div class="portfolio-box-text">
-			                		<h3>Lorem Website</h3>
-			                		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
-			                	</div>
-			                </div>
-		                </div>		                
+		                	<?php
+                        if(has_post_thumbnail()){ ?>
+			                	<img src="<?php $portfolio_img = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID(), 'portfolio-images',false)); echo $portfolio_img[0]; ?>" width="<?php echo $portfolio_img[1]; ?>" height="<?php echo $portfolio_img[2]; ?>" data-at2x="<?php echo $portfolio_img[0]; ?>" />
+                       <?php } ?>
+		                		<div class="portfolio-box-text">
+		                			<h3><?php the_title(); ?></h3>
+		                			<?php the_content(); ?>
+		                		</div>
+	                		</div>
+		                </div>
+                        <?php }
+                    }else{
+                        echo 'Sorry! there have no post.';
+                    }
+                ?>
+		                
 	                </div>
 	            </div>
 	        </div>
