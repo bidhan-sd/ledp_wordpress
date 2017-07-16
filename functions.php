@@ -1,6 +1,5 @@
 <?php
 function andia_setup() {
-
 	
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 825, 510, true );
@@ -18,8 +17,9 @@ function andia_setup() {
 add_action( 'after_setup_theme', 'andia_setup' );
 
 
-function andia_slider() {
-  register_post_type( 'slider',
+
+function andia_theme_custom_post() {
+	register_post_type( 'slider',
     array(
       'labels' => array(
         'name' => __( 'AndiaSlider' ),
@@ -32,12 +32,7 @@ function andia_slider() {
     'menu_icon'   => 'dashicons-screenoptions',
     )
   ); 
-}
-add_action( 'init', 'andia_slider');
-
-
-function andia_theme_custom_post() {
-	
+  
   register_post_type( 'portfolio',
     array(
       'labels' => array(
