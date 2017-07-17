@@ -7,34 +7,27 @@
                 <div class="col-sm-10 col-sm-offset-1 slider">
                     <div class="flexslider">
                         <ul class="slides">
-                            <li data-thumb="<?php echo get_template_directory_uri(); ?>/assets/img/slider/1.jpg">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/slider/1.jpg">
-                                <div class="flex-caption">
-                                    bidhan
-                                </div>php
-                            </li>
-                            <li data-thumb="<?php echo get_template_directory_uri(); ?>/assets/img/slider/2.jpg">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/slider/2.jpg">
-                                <div class="flex-caption">
-                                    Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit 
-                                    lobortis nisl ut aliquip ex ea commodo consequat.
-                                </div>
-                            </li>
-                            <li data-thumb="<?php echo get_template_directory_uri(); ?>/assets/img/slider/3.jpg">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/slider/3.jpg">
-                                <div class="flex-caption">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. 
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. 
-                                    Lorem ipsum dolor sit amet, consectetur.
-                                </div>
-                            </li>
-                            <li data-thumb="<?php echo get_template_directory_uri(); ?>/assets/img/slider/4.jpg">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/slider/4.jpg">
-                                <div class="flex-caption">
-                                    Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit 
-                                    lobortis nisl ut aliquip ex ea commodo consequat.
-                                </div>
-                            </li>
+							<?php
+								$the_query = new WP_Query(array(
+									'post_type' => 'slider',
+									'posts_per_page' => -1,                        
+								));  
+								if($the_query->have_posts()){
+									while($the_query->have_posts()){
+										$the_query->the_post();
+									?>
+										<li data-thumb="<?php echo $slider_image[0]; ?>">
+										<?php $slider_image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'portfolio-images',false); ?>
+											<img src="<?php echo $slider_image[0]; ?>">
+											<div class="flex-caption">
+												<?php the_title(); ?>
+											</div>
+										</li>
+									<?php }
+								}else{
+									echo 'Sorry! there have no post.';
+								}
+							?>	
                         </ul>
                     </div>
                 </div>
