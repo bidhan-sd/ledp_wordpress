@@ -4,7 +4,7 @@ function andia_setup() {
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 825, 510, true );
     add_image_size( 'slide-img', 958, 460, true );
-    add_image_size( 'portfolio-images', 958, 460, true );
+    add_image_size( 'portfolio-images', 255, 122, true );
     add_image_size( 'out-team-image', 263, 126, true );
 
 	// This theme uses wp_nav_menu() in two locations.
@@ -17,46 +17,44 @@ function andia_setup() {
 add_action( 'after_setup_theme', 'andia_setup' );
 
 
-
 function andia_theme_custom_post() {
 	register_post_type( 'slider',
-    array(
-      'labels' => array(
-        'name' => __( 'AndiaSlider' ),
-        'singular_name' => __( 'Slider' ),
-        'add_new' => __( 'add slider' ),
-        'add_new_item' => __( 'add new slider' ),
-      ),
-    'public' => true,
-    'supports' => array('title','thumbnail','editor','custom-fields'),
-    'menu_icon'   => 'dashicons-screenoptions',
-    )
-  ); 
-  
-  register_post_type( 'portfolio',
-    array(
-      'labels' => array(
-        'name' => __( 'Andiaportfolios' ),
-        'singular_name' => __( 'Portfolio' ),
-        'add_new' => __( 'add portfolio' ),
-        'add_new_item' => __( 'add new portfolio' )
-      ),
-      'public' => true,
-      'supports' => array('title','thumbnail','editor','custom-fields')
-    )
-  );
-  register_post_type( 'Services',
-    array(
-      'labels' => array(
-        'name' => __( 'Andiaservices' ),
-        'singular_name' => __( 'Services' ),
-        'add_new' => __( 'add Services' ),
-        'add_new_item' => __( 'add new Services' )
-      ),
-      'public' => true,
-      'supports' => array('title','thumbnail','editor','custom-fields')
-    )
-  );
+		array(
+		  'labels' => array(
+			'name' => __( 'AndiaSlider' ),
+			'singular_name' => __( 'Slider' ),
+			'add_new' => __( 'add slider' ),
+			'add_new_item' => __( 'add new slider' ),
+		  ),
+		'public' => true,
+		'supports' => array('title','thumbnail','editor','custom-fields'),
+		'menu_icon'   => 'dashicons-screenoptions',
+		)
+    ); 
+	register_post_type( 'portfolio',
+		array(
+		  'labels' => array(
+			'name' => __( 'Andiaportfolios' ),
+			'singular_name' => __( 'Portfolio' ),
+			'add_new' => __( 'add portfolio' ),
+			'add_new_item' => __( 'add new portfolio' )
+		  ),
+		  'public' => true,
+		  'supports' => array('title','thumbnail','editor','custom-fields')
+		)
+	);
+	register_post_type( 'Services',
+		array(
+		  'labels' => array(
+			'name' => __( 'Andiaservices' ),
+			'singular_name' => __( 'Services' ),
+			'add_new' => __( 'add Services' ),
+			'add_new_item' => __( 'add new Services' )
+		  ),
+		  'public' => true,
+		  'supports' => array('title','thumbnail','editor','custom-fields')
+		)
+	);
     register_post_type( 'adnia_team',
         array(
           'labels' => array(

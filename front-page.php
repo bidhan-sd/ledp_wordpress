@@ -17,7 +17,7 @@
 										$the_query->the_post();
 									?>
 										<li data-thumb="<?php echo $slider_image[0]; ?>">
-										<?php $slider_image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'portfolio-images',false); ?>
+										<?php $slider_image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'portfolio-images',false);?>										
 											<img src="<?php echo $slider_image[0]; ?>">
 											<div class="flex-caption">
 												<?php the_title(); ?>
@@ -94,50 +94,35 @@
                 </div>
             </div>
             <div class="row">
+                <?php
+                    $the_query = new WP_Query(array(
+                        'post_type' => 'portfolio',
+                        'posts_per_page' => 4,                        
+                    ));  
+                    if($the_query->have_posts()){
+                        while($the_query->have_posts()){
+                            $the_query->the_post();
+                ?>             
+               
                 <div class="col-sm-3">
                     <div class="work wow fadeInUp">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/portfolio/work1.jpg" alt="Lorem Website" data-at2x="assets/img/portfolio/work1.jpg">
-                        <h3>Lorem Website</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor...</p>
+                       <?php $portfolio_img = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'portfolio-images',false); ?>
+                        <img src="<?php  echo $portfolio_img[0]; ?>" alt="Lorem Website" data-at2x="<?php  echo $portfolio_img[0]; ?>">
+                        <h3><?php the_title(); ?></h3>
+                        <?php the_content(); ?>
                         <div class="work-bottom">
-                            <a class="big-link-2 view-work" href="assets/img/portfolio/work1.jpg"><i class="fa fa-search"></i></a>
+                            <a class="big-link-2 view-work" href="<?php  echo $portfolio_img[0]; ?>"><i class="fa fa-search"></i></a>
                             <a class="big-link-2" href="portfolio.html"><i class="fa fa-link"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3">
-                    <div class="work wow fadeInDown">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/portfolio/work2.jpg" alt="Ipsum Logo" data-at2x="assets/img/portfolio/work2.jpg">
-                        <h3>Ipsum Logo</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor...</p>
-                        <div class="work-bottom">
-                            <a class="big-link-2 view-work" href="assets/img/portfolio/work2.jpg"><i class="fa fa-search"></i></a>
-                            <a class="big-link-2" href="portfolio.html"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="work wow fadeInUp">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/portfolio/work3.jpg" alt="Dolor Prints" data-at2x="assets/img/portfolio/work3.jpg">
-                        <h3>Dolor Prints</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor...</p>
-                        <div class="work-bottom">
-                            <a class="big-link-2 view-work" href="assets/img/portfolio/work3.jpg"><i class="fa fa-search"></i></a>
-                            <a class="big-link-2" href="portfolio.html"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="work wow fadeInDown">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/portfolio/work4.jpg" alt="Sit Amet Website" data-at2x="assets/img/portfolio/work4.jpg">
-                        <h3>Sit Amet Website</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor...</p>
-                        <div class="work-bottom">
-                            <a class="big-link-2 view-work" href="assets/img/portfolio/work4.jpg"><i class="fa fa-search"></i></a>
-                            <a class="big-link-2" href="portfolio.html"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
+            <?php }
+                }else{
+                    echo 'Sorry! there have no post.';
+                }
+            ?>   
+                
+                
             </div>
         </div>
     </div>
