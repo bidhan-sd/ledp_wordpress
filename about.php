@@ -76,7 +76,7 @@
                                 <div class="team-box wow fadeInUp">
                                     <?php if(has_post_thumbnail()){ ?>
                                     
-                                      <img src="<?php $team_img = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID(), 'portfolio-images',false)); echo $team_img[0]; ?>" alt="" data-at2x="<?php echo $team_img[0]; ?>">
+                                      <img src="<?php $team_img = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'out-team-image',false); echo $team_img[0]; ?>" width="<?php echo $team_img[1]; ?>" height="<?php echo $team_img[2]; ?>"alt="" data-at2x="<?php echo $team_img[0]; ?>">
                                     
                                     <?php } ?>
                                     <h3><?php the_title(); ?></h3>
@@ -110,76 +110,63 @@
             </div>
             <div class="row">
                 <div class="col-sm-10 col-sm-offset-1 testimonial-list">
-                    <div role="tabpanel">
+                                        <div role="tabpanel">
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane fade in active" id="tab1">
-                                <div class="testimonial-image">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/testimonials/1.jpg" alt="" data-at2x="assets/img/testimonials/1.jpg">
-                                </div>
-                                <div class="testimonial-text">
-                                    <p>
-                                        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. 
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. 
-                                        Lorem ipsum dolor sit amet, consectetur..."<br>
-                                        <a href="#">Lorem Ipsum, dolor.co.uk</a>
-                                    </p>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade" id="tab2">
-                                <div class="testimonial-image">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/testimonials/2.jpg" alt="" data-at2x="assets/img/testimonials/2.jpg">
-                                </div>
-                                <div class="testimonial-text">
-                                    <p>
-                                        "Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip 
-                                        ex ea commodo consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit 
-                                        lobortis nisl ut aliquip ex ea commodo consequat..."<br>
-                                        <a href="#">Minim Veniam, nostrud.com</a>
-                                    </p>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade" id="tab3">
-                                <div class="testimonial-image">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/testimonials/3.jpg" alt="" data-at2x="assets/img/testimonials/3.jpg">
-                                </div>
-                                <div class="testimonial-text">
-                                    <p>
-                                        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. 
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. 
-                                        Lorem ipsum dolor sit amet, consectetur..."<br>
-                                        <a href="#">Lorem Ipsum, dolor.co.uk</a>
-                                    </p>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade" id="tab4">
-                                <div class="testimonial-image">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/<?php echo get_template_directory_uri(); ?>/assets/img/testimonials/1.jpg" alt="" data-at2x="assets/img/testimonials/1.jpg">
-                                </div>
-                                <div class="testimonial-text">
-                                    <p>
-                                        "Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip 
-                                        ex ea commodo consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit 
-                                        lobortis nisl ut aliquip ex ea commodo consequat..."<br>
-                                        <a href="#">Minim Veniam, nostrud.com</a>
-                                    </p>
-                                </div>
-                            </div>
+                        <?php
+                                $anida_post = null;
+                                $anida_post = new WP_Query(array(
+                                    'post_type' => 'adnia_testimonial',
+                                    'posts_per_page' => -1
+                                ));
+                                if($anida_post->have_posts()){
+                                    $x = 0;
+                                    while($anida_post->have_posts()){
+                                        $anida_post->the_post();
+                                    ?>
+                                    <div role="tabpanel" class="tab-pane fade in <?php if($x == 0){ echo 'active';} ?>" id="tab1<?php echo the_ID(); ?>">
+                                        <div class="testimonial-image">
+                                        <?php $testimonial_image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'testimonial-images',false);?> 
+                                            <img src="<?php echo $testimonial_image[0]; ?>" alt="" data-at2x="<?php echo $testimonial_image[0]; ?>">
+                                        </div>
+                                        <div class="testimonial-text">
+                                            <?php the_content(); ?>
+                                        </div>
+                                    </div>
+                                    <?php $x++;
+                                    }
+                                }else{
+                                    echo "No post here";
+                                }
+                                wp_reset_postdata();
+                                $anida_post = null;
+                            ?>                             
                         </div>
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active">
-                                <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab"></a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab"></a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab"></a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab"></a>
-                            </li>
+                            <?php
+                                $anida_post = null;
+                                $anida_post = new WP_Query(array(
+                                    'post_type' => 'adnia_testimonial',
+                                    'posts_per_page' => -1
+                                ));
+                                if($anida_post->have_posts()){
+                                    $x = 0;
+                                    while($anida_post->have_posts()){
+                                        $anida_post->the_post();
+                                    ?>
+                                        <li role="presentation" class="<?php if($x == 0){ echo 'active';} ?>">
+                                            <a href="#tab1<?php echo the_ID(); ?>" aria-controls="tab1" role="tab" data-toggle="tab"></a>
+                                        </li>       
+
+                                    <?php $x++;
+                                    }
+                                }else{
+                                    echo "No post here";
+                                }
+                                wp_reset_postdata();
+                                $anida_post = null;
+                            ?>
                         </ul>
                     </div>
                 </div>
