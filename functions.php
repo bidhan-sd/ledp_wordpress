@@ -1,11 +1,14 @@
 <?php
-function andia_setup() {
-	
+require_once get_template_directory() . "/assets/codestar/cs-framework.php";
+require_once get_template_directory() . "/assets/Metabox/cmb2-custom-field.php";
+
+function andia_setup() {    
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 825, 510, true );
     add_image_size( 'slide-img', 958, 460, true );
     add_image_size( 'portfolio-images', 255, 122, true );
     add_image_size( 'out-team-image', 263, 126, true );
+    add_image_size( 'testimonial-images', 64, 64, true );
 
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
@@ -62,6 +65,19 @@ function andia_theme_custom_post() {
             'singular_name' => __( 'Our team' ),
             'add_new' => __( 'add tean' ),
             'add_new_item' => __( 'add new team' )
+          ),
+          'public' => true,
+          'supports' => array('title','thumbnail','editor','custom-fields')
+        )
+    );
+    //For testimonial
+    register_post_type( 'adnia_testimonial',
+        array(
+          'labels' => array(
+            'name' => __( 'Our testimonial' ),
+            'singular_name' => __( 'Our testimonial'),
+            'add_new' => __( 'add testimonial' ),
+            'add_new_item' => __( 'add new testimonial' )
           ),
           'public' => true,
           'supports' => array('title','thumbnail','editor','custom-fields')
