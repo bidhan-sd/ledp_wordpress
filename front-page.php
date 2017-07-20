@@ -1,5 +1,4 @@
 <?php get_header(); ?>
-<?php //echo realpath(dirname(__FILE__)); ?>
     <!-- Slider -->
     <div class="slider-container">
         <div class="container">
@@ -16,12 +15,12 @@
 									while($the_query->have_posts()){
 										$the_query->the_post();
 									?>
+									<?php $slider_image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'portfolio-images',false);?>	
 										<li data-thumb="<?php echo $slider_image[0]; ?>">
-										<?php $slider_image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'portfolio-images',false);?>										
-											<img src="<?php echo $slider_image[0]; ?>">
-											<div class="flex-caption">
-												<?php the_title(); ?>
-											</div>
+                                        <img src="<?php echo $slider_image[0]; ?>">
+                                        <div class="flex-caption">
+                                            <?php the_title(); ?>
+                                        </div>
 										</li>
 									<?php }
 								}else{
@@ -150,7 +149,6 @@
                                     $x = 0;
                                     while($anida_post->have_posts()){
                                         $anida_post->the_post();
-                                        $testimonial_meta = get_post_meta(get_the_ID(),'_andia_testimonial_name',true);
                                     ?>
                                     <div role="tabpanel" class="tab-pane fade in <?php if($x == 0){ echo 'active';} ?>" id="tab1<?php echo the_ID(); ?>">
                                         <div class="testimonial-image">
@@ -182,7 +180,6 @@
                                     $x = 0;
                                     while($anida_post->have_posts()){
                                         $anida_post->the_post();
-                                        $testimonial_meta = get_post_meta(get_the_ID(),'_andia_testimonial_name',true);
                                     ?>
                                         <li role="presentation" class="<?php if($x == 0){ echo 'active';} ?>">
                                             <a href="#tab1<?php echo the_ID(); ?>" aria-controls="tab1" role="tab" data-toggle="tab"></a>

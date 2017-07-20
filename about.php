@@ -81,11 +81,25 @@
                                     <?php } ?>
                                     <h3><?php the_title(); ?></h3>
                                     <?php the_content(); ?>
-                                    <div class="team-social">		                        
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                                        <a href="#"><i class="fa fa-envelope"></i></a>
+                                    <div class="team-social">	
+                                    <?php
+                                        $fb_url = get_post_meta( get_the_ID(), '_andia_fb_team_url_link', true );
+                                        $tw_url = get_post_meta( get_the_ID(), '_andia_tw_team_url_link', true );
+                                        $Ln_url = get_post_meta( get_the_ID(), '_andia_ln_team_url_link', true );
+                                        $msg_url = get_post_meta( get_the_ID(), '_andia_msg_team_url_link', true );
+                                    ?>
+                                   <?php if($fb_url) { ?>
+                                    <a href="<?php echo $fb_url; ?>"><i class="fa fa-facebook"></i></a>
+                                    <?php } ?>
+                                    <?php if($tw_url) { ?>
+                                    <a href="<?php echo $tw_url; ?>"><i class="fa fa-twitter"></i></a>
+                                    <?php } ?>
+                                    <?php if($Ln_url) { ?>
+                                    <a href="<?php echo $Ln_url; ?>"><i class="fa fa-linkedin"></i></a>
+                                    <?php } ?>
+                                    <?php if($msg_url) { ?>
+                                    <a href="<?php echo $msg_url; ?>"><i class="fa fa-envelope"></i></a>
+                                    <?php } ?>
                                     </div>
                                 </div>
                             </div>                           
