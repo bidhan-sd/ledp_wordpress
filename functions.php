@@ -143,3 +143,5 @@ function andia_theme_css_js(){
    wp_enqueue_script('scripts',get_template_directory_uri().'/assets/js/scripts.js','jquery',null,true);
 }
 add_action('wp_enqueue_scripts','andia_theme_css_js');
+
+//widget register here.
