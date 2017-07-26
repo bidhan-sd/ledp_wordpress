@@ -27,9 +27,9 @@
                         Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper <a href="">suscipit lobortis</a> 
                         nisl ut aliquip ex ea commodo consequat.
                     </p>
-                   <?php
-                        echo do_shortcode('');
-                    ?>
+						<?php
+							 echo do_shortcode('[contact-form-7 id="73" title="ledpcontactform"]');
+						?>
                 </div>
                 <div class="col-sm-5 contact-address wow fadeInUp">
                     <h3>We Are Here</h3>
