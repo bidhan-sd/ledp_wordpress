@@ -1,7 +1,7 @@
 <?php
 require_once get_template_directory() . "/assets/codestar/cs-framework.php";
 require_once get_template_directory() . "/assets/Metabox/cmb2-custom-field.php";
-
+include_once get_template_directory() . "/inc/custom-widgets.php";
 function andia_setup() {    
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 825, 510, true );
