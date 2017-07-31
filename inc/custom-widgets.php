@@ -13,7 +13,7 @@
         }
         public function form($value){ ?>
 
-            <label for="<?php echo $this->get_field_id('sliderID'); ?>">ID</label>
+            <label for="<?php echo $this->get_field_id('sliderID'); ?>">About Content</label>
             <input type="text" name="<?php echo $this->get_field_name('slider_id'); ?>" id="<?php echo $this->get_field_id('sliderID'); ?>" value="<?php echo $value['slider_id']; ?>" class="widefat"/>
 
         <?php }
