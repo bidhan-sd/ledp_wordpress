@@ -18,17 +18,40 @@
 
             <label for="<?php echo $this->get_field_id('sliderID'); ?>">About Content</label>
             <input type="text" name="<?php echo $this->get_field_name('slider_id'); ?>" id="<?php echo $this->get_field_id('sliderID'); ?>" value="<?php echo $value['slider_id']; ?>" class="widefat"/>
+			
+            <label for="<?php echo $this->get_field_id('sliderID'); ?>">About Content</label>
+            <input type="text" name="<?php echo $this->get_field_name('slider_id'); ?>" id="<?php echo $this->get_field_id('sliderID'); ?>" value="<?php echo $value['slider_id']; ?>" class="widefat"/>
 
+        <?php }
+    }    
+	
+	
+	class ledpCustom_Widgets_another extends WP_Widget{
+        public function __construct(){
+             parent::__construct(
+                'ledpwidgetanother','Ledp Widget Another',array(
+                    'description' => 'This widget for ledp porject footer option',
+                )
+             );
+        }
+
+        public function widget($args,$value){
+
+        }
+        public function form($value){ ?>
+
+           
         <?php }
     }
 
-function ledp_andia_widget(){
-    register_sidebar(array(
-        'name' => 'Ledp custom sidebar',
-        'id' => 'ledp_custom_sidebar'
-    ));
+    function ledp_andia_widget(){
+        register_sidebar(array(
+            'name' => 'Ledp custom sidebar',
+            'id' => 'ledp_custom_sidebar'
+        ));
 
-    register_widget('ledpCustom_Widgets');
-}
+        register_widget('ledpCustom_Widgets');
+        register_widget('ledpCustom_Widgets_another');
+    }
 
 add_action('widgets_init','ledp_andia_widget');
